@@ -1,0 +1,5 @@
+// Application icon resource. The numeric id (101) is referenced from Rust via
+// `crate::IDI_APP` so the same embedded icon is used for the executable's file
+// icon, every window's title bar / taskbar button, and the tray notification.
+#define IDI_APP 101
+IDI_APP ICON "logo.ico"

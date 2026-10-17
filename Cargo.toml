@@ -1,0 +1,57 @@
+[package]
+name = "localsend-win32"
+version = "0.1.0"
+edition = "2021"
+description = "Native Win32 + windows-rs reimplementation of the LocalSend client (LocalSend v2.2 protocol)"
+default-run = "localsend-win32"
+
+[features]
+# Default build uses plain HTTP for maximum compatibility / zero TLS deps.
+# Enable `https` to serve and connect over TLS with a generated self-signed cert
+# (matches the official client's default "require encryption" mode).
+default = []
+https = ["dep:axum-server", "dep:tokio-rustls", "dep:rustls", "dep:rcgen"]
+
+[dependencies]
+windows = { version = "0.52", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_UI_Controls",
+    "Win32_UI_Controls_Dialogs",
+    "Win32_Graphics_Gdi",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_System_Com",
+    "Win32_System_Memory",
+    "Win32_System_DataExchange",
+    "Win32_System_Registry",
+] }
+
+tokio = { version = "1", features = ["full"] }
+axum = "0.7"
+bytes = "1"
+futures-util = { version = "0.3", features = ["io"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "stream", "multipart", "json"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4"] }
+directories = "5"
+anyhow = "1"
+log = "0.4"
+simplelog = "0.12"
+
+# --- Optional, only built with the `https` feature ---
+axum-server = { version = "0.7", features = ["tls-rustls"], optional = true }
+tokio-rustls = { version = "0.25", optional = true }
+rustls = { version = "0.22", optional = true }
+rcgen = { version = "0.12", optional = true }
+
+[profile.release]
+opt-level = 2
+lto = true
+
+[build-dependencies]
+embed-resource = "2"

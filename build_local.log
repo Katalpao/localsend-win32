@@ -1,0 +1,75 @@
+   Compiling localsend-win32 v0.1.0 (C:\Users\Chsho\WorkBuddy\2026-10-13-17-02-53\localsend-win32)
+warning: unused variable: `session_id`
+  --> src\protocol\client.rs:58:5
+   |
+58 |     session_id: String,
+   |     ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_session_id`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `url`
+   --> src\protocol\client.rs:186:9
+    |
+186 |     let url = format!("{}/api/localsend/v2/upload", target.base_url());
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_url`
+
+warning: unused variable: `send_task`
+  --> src\protocol\discovery.rs:64:9
+   |
+64 |     let send_task = tokio::spawn(async move {
+   |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_send_task`
+
+warning: unused variable: `encryption`
+  --> src\protocol\server.rs:90:16
+   |
+90 |     let (port, encryption) = {
+   |                ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_encryption`
+
+warning: unused variable: `total`
+   --> src\protocol\server.rs:265:9
+    |
+265 |     let total = meta.size;
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_total`
+
+warning: constant `WM_OPEN_SETTINGS` is never used
+  --> src\msg.rs:39:11
+   |
+39 | pub const WM_OPEN_SETTINGS: u32 = WM_USER_BASE + 7;
+   |           ^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `WM_OPEN_SEND` is never used
+  --> src\msg.rs:42:11
+   |
+42 | pub const WM_OPEN_SEND: u32 = WM_USER_BASE + 8;
+   |           ^^^^^^^^^^^^
+
+warning: field `session_id` is never read
+  --> src\msg.rs:90:9
+   |
+89 | pub struct TransferFailed {
+   |            -------------- field in this struct
+90 |     pub session_id: String,
+   |         ^^^^^^^^^^
+
+warning: struct `PrepareDownloadResponse` is never constructed
+   --> src\protocol\types.rs:131:12
+    |
+131 | pub struct PrepareDownloadResponse {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `app_clone` is never used
+   --> src\ui\mod.rs:109:15
+    |
+109 | pub unsafe fn app_clone<T: 'static + ContextWithApp>(hwnd: HWND) -> Arc<AppInner> {
+    |               ^^^^^^^^^
+
+warning: trait `ContextWithApp` is never used
+   --> src\ui\mod.rs:115:11
+    |
+115 | pub trait ContextWithApp {
+    |           ^^^^^^^^^^^^^^
+
+warning: `localsend-win32` (bin "localsend-win32") generated 11 warnings (run `cargo fix --bin "localsend-win32" -p localsend-win32` to apply 5 suggestions)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 13.70s
